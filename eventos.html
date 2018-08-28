@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-if en vue.js</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2>Eventos de vue</h2>
+                </div>
+                <div class="col-xs-4">
+                    <div class="input-group">
+                        <input type="text" class="form-control" v-model="name" v-on:keyup.enter="addname">
+                        <span class="input-group-btn">
+                            <input type="button" class="btn btn-default" value="add" v-on:click="addname">
+                        </span>
+                    </div>
+                    <hr>
+                    <ul class="list-group">
+                        <li class="list-group-item" v-for="item in people" v-text="item"></li>
+                    </ul>
+                </div>
+                <div class="col-xs-4">
+                    <button v-on:click="num += 1">
+                       {{ num }} <i class="glyphicon glyphicon-eject"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2>Eventos de vue form submit</h2>
+                </div>
+                <div class="col-xs-4">
+                    <form v-on:submit.prevent="addName">
+                        <div class="input-group">
+                            <input type="text" class="form-control" v-model="name1">
+                            <span class="input-group-btn">
+                                            <input type="submit" class="btn btn-default" value="add">
+                                        </span>
+                        </div>
+                        <hr>
+                        <ul class="list-group">
+                            <li class="list-group-item" v-for="item in people1" v-text="item"></li>
+                        </ul>
+                </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.0/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#main',
+            data: {
+                people: ['juan', 'luis', 'jorge', 'david'],
+                people1: ['juan', 'luis', 'jorge', 'david'],
+                name: '',
+                name1: '',
+                num: 0,
+
+            },
+            methods: {
+                addname: function() {
+                    if (this.name != '') {
+                        this.people.push(this.name);
+                        this.name = '';
+                    } else {
+
+                    }
+                },
+                addName: function() {
+                    if (this.name1 != '') {
+                        this.people1.push(this.name1);
+                        this.name1 = '';
+                    } else {
+
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
